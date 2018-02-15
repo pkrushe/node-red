@@ -19,10 +19,10 @@
 //var fs = require("fs");
 
 module.exports = {
-    // the tcp port that the Node-RED web server is listening on
+    // the tcp port that the IntCon web server is listening on
     uiPort: process.env.PORT || 1880,
 
-    // By default, the Node-RED UI accepts connections on all IPv4 interfaces.
+    // By default, the IntCon UI accepts connections on all IPv4 interfaces.
     // The following property can be used to listen on a specific interface. For
     // example, the following would only allow connections from the local machine.
     //uiHost: "127.0.0.1",
@@ -62,15 +62,15 @@ module.exports = {
     // lost.
     //credentialSecret: "a-secret-key",
 
-    // By default, all user data is stored in the Node-RED install directory. To
+    // By default, all user data is stored in the IntCon install directory. To
     // use a different location, the following property can be used
-    //userDir: '/home/nol/.node-red/',
+    //userDir: '/home/nol/.wrkbench/',
 
-    // Node-RED scans the `nodes` directory in the install directory to find nodes.
+    // IntCon scans the `nodes` directory in the install directory to find nodes.
     // The following property can be used to specify an additional directory to scan.
-    //nodesDir: '/home/nol/.node-red/nodes',
+    //nodesDir: '/home/nol/.wrkbench/nodes',
 
-    // By default, the Node-RED UI is available at http://localhost:1880/
+    // By default, the IntCon UI is available at http://localhost:1880/
     // The following property can be used to specifiy a different root path.
     // If set to false, this is disabled.
     //httpAdminRoot: '/admin',
@@ -79,28 +79,28 @@ module.exports = {
     // By default, these are served relative to '/'. The following property
     // can be used to specifiy a different root path. If set to false, this is
     // disabled.
-    //httpNodeRoot: '/red-nodes',
+    httpNodeRoot: '/intcon',
 
     // The following property can be used in place of 'httpAdminRoot' and 'httpNodeRoot',
     // to apply the same root to both parts.
-    //httpRoot: '/red',
+    httpRoot: '/intcon/wrkbench',
 
     // When httpAdminRoot is used to move the UI to a different root path, the
     // following property can be used to identify a directory of static content
     // that should be served at http://localhost:1880/.
-    //httpStatic: '/home/nol/node-red-static/',
+    //httpStatic: '/home/nol/wrkbench-static/',
 
     // The maximum size of HTTP request that will be accepted by the runtime api.
     // Default: 5mb
     //apiMaxLength: '5mb',
 
-    // If you installed the optional node-red-dashboard you can set it's path
+    // If you installed the optional wrkbench-dashboard you can set it's path
     // relative to httpRoot
     //ui: { path: "ui" },
 
-    // Securing Node-RED
+    // Securing IntCon
     // -----------------
-    // To password protect the Node-RED editor and admin API, the following
+    // To password protect the IntCon editor and admin API, the following
     // property can be used. See http://nodered.org/docs/security.html for details.
     //adminAuth: {
     //    type: "credentials",
@@ -129,10 +129,6 @@ module.exports = {
     //    cert: fs.readFileSync('certificate.pem')
     //},
 
-    // The following property can be used to cause insecure HTTP connections to
-    // be redirected to HTTPS.
-    //requireHttps: true
-
     // The following property can be used to disable the editor. The admin API
     // is not affected by this option. To disable both the editor and the admin
     // API, use either the httpRoot or httpAdminRoot properties
@@ -148,7 +144,7 @@ module.exports = {
     //},
 
     // If you need to set an http proxy please set an environment variable
-    // called http_proxy (or HTTP_PROXY) outside of Node-RED in the operating system.
+    // called http_proxy (or HTTP_PROXY) outside of IntCon in the operating system.
     // For example - http_proxy=http://myproxy.com:8080
     // (Setting it here will have no effect)
     // You may also specify no_proxy (or NO_PROXY) to supply a comma separated

@@ -1543,12 +1543,15 @@ RED.view = (function() {
                         l = d.type;
                     }
 
-                    if (isLink) {
+                    
+                   if (isLink) {
                         d.w = node_height;
                     } else {
                         d.w = Math.max(node_width,gridSize*(Math.ceil((calculateTextWidth(l, "node_label", 50)+(d._def.inputs>0?7:0))/gridSize)) );
                     }
-                    d.h = Math.max(node_height,(d.outputs||0) * 15);
+					//FIXED:pkrushe set 35x45
+                    d.w = 50;
+                    d.h = 40;//Math.max(node_height,(d.outputs||0) * 15);
 
                     if (d._def.badge) {
                         var badge = node.append("svg:g").attr("class","node_badge_group");
@@ -1599,7 +1602,7 @@ RED.view = (function() {
                         .classed("node_unknown",function(d) { return d.type == "unknown"; })
                         .attr("rx", 5)
                         .attr("ry", 5)
-                        .attr("fill",function(d) { return d._def.color;})
+                        .attr("fill", "#59c8ff" /*function(d) { return d._def.color;}*/)
                         .on("mouseup",nodeMouseUp)
                         .on("mousedown",nodeMouseDown)
                         .on("touchstart",function(d) {
@@ -1645,26 +1648,30 @@ RED.view = (function() {
                         var icon_shade = icon_group.append("rect")
                             .attr("x",0).attr("y",0)
                             .attr("class","node_icon_shade")
-                            .attr("width","30")
+                            //FIXED:pkrushe - width 50
+                            .attr("width", 50)
                             .attr("stroke","none")
                             .attr("fill","#000")
                             .attr("fill-opacity","0.05")
-                            .attr("height",function(d){return Math.min(50,d.h-4);});
+                            //FIXED:pkrushe - width 40
+                            .attr("height",40 /*function(d){return Math.min(50,d.h-4);}*/);
 
                         var icon = icon_group.append("image")
                             .attr("xlink:href","icons/"+d._def.icon)
                             .attr("class","node_icon")
                             .attr("x",0)
-                            .attr("width","30")
-                            .attr("height","30");
+                            //FIXED:pkrushe - width 40
+                            .attr("width",50)
+                            .attr("height",40);
 
+                        //TODO:pkrushe - remove path
                         var icon_shade_border = icon_group.append("path")
                             .attr("d",function(d) { return "M 30 1 l 0 "+(d.h-2)})
                             .attr("class","node_icon_shade_border")
                             .attr("stroke-opacity","0.1")
                             .attr("stroke","#000")
                             .attr("stroke-width","1");
-
+                        
                         if ("right" == d._def.align) {
                             icon_group.attr("class","node_icon_group node_icon_group_"+d._def.align);
                             icon_shade_border.attr("d",function(d) { return "M 0 1 l 0 "+(d.h-2)})
@@ -1685,9 +1692,10 @@ RED.view = (function() {
                         var img = new Image();
                         img.src = "icons/"+d._def.icon;
                         img.onload = function() {
-                            icon.attr("width",Math.min(img.width,30));
-                            icon.attr("height",Math.min(img.height,30));
-                            icon.attr("x",15-Math.min(img.width,30)/2);
+                            //FIXED:pkrushe - width 50x40, x=0
+                            icon.attr("width",50 /*Math.min(img.width,30)*/);
+                            icon.attr("height",40 /*Math.min(img.height,30)*/);
+                            icon.attr("x",0 /*15-Math.min(img.width,30)/2*/);
                             //if ("right" == d._def.align) {
                             //    icon.attr("x",function(d){return d.w-img.width-1-(d.outputs>0?5:0);});
                             //    icon_shade.attr("x",function(d){return d.w-30});
@@ -1699,13 +1707,13 @@ RED.view = (function() {
                         icon_group.style("pointer-events","none");
                     }
                     if (!isLink) {
-                        var text = node.append("svg:text").attr("class","node_label").attr("x", 38).attr("dy", ".35em").attr("text-anchor","start");
+                        /*var text = node.append("svg:text").attr("class","node_label").attr("x", 38).attr("dy", ".35em").attr("text-anchor","start");
                         if (d._def.align) {
                             text.attr("class","node_label node_label_"+d._def.align);
                             if (d._def.align === "right") {
                                 text.attr("text-anchor","end");
                             }
-                        }
+                        }*/
 
                         var status = node.append("svg:g").attr("class","node_status_group").style("display","none");
 
@@ -1719,6 +1727,7 @@ RED.view = (function() {
                     }
                     //node.append("circle").attr({"class":"centerDot","cx":0,"cy":0,"r":5});
 
+                    //TODO:pkrushe - node error must have a color scheme instead of a icon
                     //node.append("path").attr("class","node_error").attr("d","M 3,-3 l 10,0 l -5,-8 z");
                     node.append("image").attr("class","node_error hidden").attr("xlink:href","icons/node-error.png").attr("x",0).attr("y",-6).attr("width",10).attr("height",9);
                     node.append("image").attr("class","node_changed hidden").attr("xlink:href","icons/node-changed.png").attr("x",12).attr("y",-6).attr("width",10).attr("height",10);
@@ -1738,9 +1747,12 @@ RED.view = (function() {
                                 l = d.type;
                             }
                             var ow = d.w;
-                            d.w = Math.max(node_width,gridSize*(Math.ceil((calculateTextWidth(l, "node_label", 50)+(d._def.inputs>0?7:0))/gridSize)) );
-                            d.h = Math.max(node_height,(d.outputs||0) * 15);
-                            d.x += (d.w-ow)/2;
+                            //FIXED:pkrushe set 35x45
+                            d.w = 50;
+                            d.h = 40;
+                            // d.w = Math.max(node_width,gridSize*(Math.ceil((calculateTextWidth(l, "node_label", 50)+(d._def.inputs>0?7:0))/gridSize)) );
+                            // d.h = Math.max(node_height,(d.outputs||0) * 15);
+                            d.x+= (d.w-ow)/2;
                             d.resize = false;
                         }
                         var thisNode = d3.select(this);
@@ -1853,9 +1865,9 @@ RED.view = (function() {
                                     var img = new Image();
                                     img.src = "icons/"+d._def.icon;
                                     img.onload = function() {
-                                        icon.attr("width",Math.min(img.width,30));
-                                        icon.attr("height",Math.min(img.height,30));
-                                        icon.attr("x",15-Math.min(img.width,30)/2);
+                                        icon.attr("width",50 /*Math.min(img.width,30)*/);
+                                        icon.attr("height",40 /*Math.min(img.height,30)*/);
+                                        icon.attr("x",0 /*15-Math.min(img.width,30)/2*/);
                                     }
                                 }
                             }

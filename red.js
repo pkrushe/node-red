@@ -55,8 +55,8 @@ nopt.invalidHandler = function(k,v,t) {
 var parsedArgs = nopt(knownOpts,shortHands,process.argv,2)
 
 if (parsedArgs.help) {
-    console.log("Node-RED v"+RED.version());
-    console.log("Usage: node-red [-v] [-?] [--settings settings.js] [--userDir DIR]");
+    console.log("IntCon v"+RED.version());
+    console.log("Usage: wrkbench [-v] [-?] [--settings settings.js] [--userDir DIR]");
     console.log("                [--port PORT] [--title TITLE] [flows.json]");
     console.log("");
     console.log("Options:");
@@ -85,10 +85,10 @@ if (parsedArgs.settings) {
         // NODE_RED_HOME contains user data - use its settings.js
         settingsFile = path.join(process.env.NODE_RED_HOME,"settings.js");
     } else {
-        var userDir = parsedArgs.userDir || path.join(process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,".node-red");
+        var userDir = parsedArgs.userDir || path.join(process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,".wrkbench");
         var userSettingsFile = path.join(userDir,"settings.js");
         if (fs.existsSync(userSettingsFile)) {
-            // $HOME/.node-red/settings.js exists
+            // $HOME/.wrkbench/settings.js exists
             settingsFile = userSettingsFile;
         } else {
             var defaultSettings = path.join(__dirname,"settings.js");
@@ -175,7 +175,7 @@ try {
     RED.init(server,settings);
 } catch(err) {
     if (err.code == "not_built") {
-        console.log("Node-RED has not been built. See README.md for details");
+        console.log("IntCon has not been built. See README.md for details");
     } else {
         console.log("Failed to start server:");
         if (err.stack) {
@@ -268,7 +268,7 @@ RED.start().then(function() {
             if (settings.httpAdminRoot === false) {
                 RED.log.info(RED.log._("server.admin-ui-disabled"));
             }
-            process.title = parsedArgs.title || 'node-red';
+            process.title = parsedArgs.title || 'wrkbench';
             RED.log.info(RED.log._("server.now-running", {listenpath:getListenPath()}));
         });
     } else {

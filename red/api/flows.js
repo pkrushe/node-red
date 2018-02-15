@@ -25,7 +25,7 @@ module.exports = {
         log = runtime.log;
     },
     get: function(req,res) {
-        var version = req.get("Node-RED-API-Version")||"v1";
+        var version = req.get("IntCon-API-Version")||"v1";
         if (version === "v1") {
             log.audit({event: "flows.get",version:"v1"},req);
             res.json(redNodes.getFlows().flows);
@@ -38,9 +38,9 @@ module.exports = {
         }
     },
     post: function(req,res) {
-        var version = req.get("Node-RED-API-Version")||"v1";
+        var version = req.get("IntCon-API-Version")||"v1";
         var flows = req.body;
-        var deploymentType = req.get("Node-RED-Deployment-Type")||"full";
+        var deploymentType = req.get("IntCon-Deployment-Type")||"full";
         log.audit({event: "flows.set",type:deploymentType,version:version},req);
         if (deploymentType === 'reload') {
             redNodes.loadFlows().then(function() {

@@ -84,7 +84,7 @@ RED.settings = (function () {
                     if (auth_tokens) {
                         jqXHR.setRequestHeader("Authorization","Bearer "+auth_tokens.access_token);
                     }
-                    jqXHR.setRequestHeader("Node-RED-API-Version","v2");
+                    jqXHR.setRequestHeader("IntCon-API-Version","v2");
                 }
             }
         });
@@ -105,7 +105,7 @@ RED.settings = (function () {
                 if (RED.settings.user && RED.settings.user.anonymous) {
                     RED.settings.remove("auth-tokens");
                 }
-                console.log("Node-RED: " + data.version);
+                console.log("IntCon: " + data.version);
                 done();
             },
             error: function(jqXHR,textStatus,errorThrown) {

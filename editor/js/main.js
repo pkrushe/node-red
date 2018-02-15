@@ -219,7 +219,7 @@ var RED = (function() {
 
         menuOptions.push({id:"menu-item-keyboard-shortcuts",label:RED._("menu.label.keyboardShortcuts"),onselect:RED.keyboard.showHelp});
         menuOptions.push({id:"menu-item-help",
-            label: RED.settings.theme("menu.menu-item-help.label","Node-RED website"),
+            label: RED.settings.theme("menu.menu-item-help.label","IntCon website"),
             href: RED.settings.theme("menu.menu-item-help.url","http://nodered.org/docs")
         });
         menuOptions.push({id:"menu-item-node-red-version", label:"v"+RED.settings.version, onselect: showAbout });

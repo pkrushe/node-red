@@ -17,7 +17,7 @@ var util = require("util");
 var mqtt = require("./mqtt");
 var settings = require(process.env.NODE_RED_HOME+"/red/red").settings;
 
-util.log("[warn] nodes/core/io/lib/mqttConnectionPool.js is deprecated and will be removed in a future release of Node-RED. Please report this usage to the Node-RED mailing list.");
+util.log("[warn] nodes/core/io/lib/mqttConnectionPool.js is deprecated and will be removed in a future release of IntCon. Please report this usage to the IntCon mailing list.");
 
 var connections = {};
 

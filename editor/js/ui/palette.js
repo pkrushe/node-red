@@ -87,7 +87,9 @@ RED.palette = (function() {
         displayLines.push(currentLine);
 
         var lines = displayLines.join("<br/>");
-        var multiLineNodeHeight = 8+(lineHeight*displayLines.length);
+        //FIXED:pkrushe - height+10 - set to fixed 35
+        var lnheight = 18+(lineHeight*displayLines.length);
+        var multiLineNodeHeight = 35;//lnheight > 35?35:lnheight;
         el.css({height:multiLineNodeHeight+"px"});
 
         var labelElement = el.find(".palette_label");
@@ -120,6 +122,7 @@ RED.palette = (function() {
         return nt.replace(" ","_").replace(".","_").replace(":","_");
     }
 
+    //TODO:pkrushe - nodes for the palette
     function addNodeType(nt,def) {
         var nodeTypeId = escapeNodeType(nt);
         if ($("#palette_node_"+nodeTypeId).length) {
@@ -143,7 +146,7 @@ RED.palette = (function() {
                 }
             }
 
-            $('<div/>',{class:"palette_label"+(def.align=="right"?" palette_label_right":"")}).appendTo(d);
+            //$('<div/>',{class:"palette_label"+(def.align=="right"?" palette_label_right":"")}).appendTo(d);
 
             d.className="palette_node";
 
@@ -159,6 +162,7 @@ RED.palette = (function() {
                 $('<div/>',{class:"palette_icon",style:"background-image: url(icons/"+icon_url+")"}).appendTo(iconContainer);
             }
 
+            //TODO:pkrushe - change color
             d.style.backgroundColor = def.color;
 
             if (def.outputs > 0) {

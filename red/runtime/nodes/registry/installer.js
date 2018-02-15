@@ -47,7 +47,7 @@ function checkModulePath(folder) {
         moduleName = pkg.name;
         if (!pkg['node-red']) {
             // TODO: nls
-            err = new Error("Invalid Node-RED module");
+            err = new Error("Invalid IntCon module");
             err.code = 'invalid_module';
             throw err;
         }
