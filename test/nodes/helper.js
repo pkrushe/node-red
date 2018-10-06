@@ -41,6 +41,12 @@ var http = require('http');
 var express = require('express');
 var app = express();
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 var address = '127.0.0.1';
 var listenPort = 0; // use ephemeral port
 var port;

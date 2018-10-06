@@ -70,10 +70,23 @@ function init(_server,_runtime) {
     log = runtime.log;
     if (settings.httpNodeRoot !== false) {
         nodeApp = express();
+
+        nodeApp.use(function(req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+          });
     }
     if (settings.httpAdminRoot !== false) {
         comms.init(server,runtime);
         adminApp = express();
+
+        adminApp.use(function(req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+          });
+        
         auth.init(runtime);
         credentials.init(runtime);
         flows.init(runtime);
@@ -87,6 +100,11 @@ function init(_server,_runtime) {
         if (!settings.disableEditor) {
             ui.init(runtime);
             var editorApp = express();
+            editorApp.use(function(req, res, next) {
+                res.header("Access-Control-Allow-Origin", "*");
+                res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                next();
+              });
             if (settings.requireHttps === true) {
                 editorApp.enable('trust proxy');
                 editorApp.use(function (req, res, next) {

@@ -73,6 +73,12 @@ module.exports = {
 
         var themeApp = express();
 
+        themeApp.use(function(req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+          });
+
         if (theme.page) {
             if (theme.page.css) {
                 var styles = theme.page.css;

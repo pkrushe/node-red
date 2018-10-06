@@ -106,6 +106,12 @@ describe("red/nodes/index", function() {
        var localfilesystem = require("../../../../red/runtime/storage/localfilesystem");
        var RED = require("../../../../red/red.js");
 
+       app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+      });
+      
        var userDir = path.join(__dirname,".testUserHome");
        before(function(done) {
            fs.remove(userDir,function(err) {

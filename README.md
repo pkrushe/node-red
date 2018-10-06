@@ -35,6 +35,8 @@ If you want to run the latest code from git, here's how to get started:
         cd node-red
 
 2. Install the node-red dependencies
+Note: before doing that on win64/32 you must configure build tools - https://github.com/nodejs/node-gyp and since node 8.x does not yet support version 2017, choose the option 1, install build tools 'npm install --global --production windows-build-tools'
+in case of error re: 2017 set it to 2015 by running 'npm config set msvs_version 2015'
 
         npm install
 

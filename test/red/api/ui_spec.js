@@ -140,6 +140,11 @@ describe("ui api", function() {
     describe("editor ui handler", function() {
         before(function() {
             app = express();
+            app.use(function(req, res, next) {
+                res.header("Access-Control-Allow-Origin", "*");
+                res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                next();
+              });
             app.use("/",ui.editor);
         });
         it('serves the editor', function(done) {
@@ -160,6 +165,11 @@ describe("ui api", function() {
     describe("editor ui resource handler", function() {
         before(function() {
             app = express();
+            app.use(function(req, res, next) {
+                res.header("Access-Control-Allow-Origin", "*");
+                res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                next();
+              });
             app.use("/",ui.editorResources);
         });
         it('serves the editor resources', function(done) {
